@@ -4,6 +4,7 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { HomeContextProvider } from "./components/Context/HomeContext";
+import { MessagesContextProvider } from "./components/Context/MessagesContext";
 
 ReactDOM.render(
   <React.StrictMode>
