@@ -55,9 +55,9 @@ export const MessagesContextProvider = (props) => {
       firebase
         .firestore()
         .collection("Users")
-        .doc(User.uid)
-        .collection("Tasks")
-        .orderBy("addedon", "desc")
+        .doc("Urgente")
+        .collection(User.uid)
+        .orderBy("addedon", "asc")
         .onSnapshot((snapshot) => {
           const newtask = snapshot.docs.map((doc) => ({
             id: doc.id,
@@ -78,12 +78,21 @@ export const MessagesContextProvider = (props) => {
       "-" +
       (parseInt(d.getUTCMonth()) + 1).toString() +
       "-" +
-      d.getFullYear();
+      d.getFullYear() +
+      "-" +
+      d.getHours() +
+      "-" +
+      d.getMinutes() +
+      "-" +
+      d.getSeconds() +
+      "-" +
+      d.getMilliseconds();
 
     const obj = {
       task,
       completed: false,
       addedon: date,
+      user: User.uid,
     };
     const sfRef = firebase.firestore().collection("Users").doc("Urgente");
     sfRef
@@ -152,7 +161,8 @@ export const MessagesContextProvider = (props) => {
   return (
     <MessagesContext.Provider
       value={{
-        // Messages,
+        User,
+        Messages,
         AddMessageFireBase,
         // DeleteMessageFireBase,
       }}

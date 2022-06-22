@@ -3,6 +3,7 @@ import { Header } from "./styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import InputChat from "../../components/InputChat";
+import ChatMessages from "../../components/ChatMessages";
 
 const NeedHelp = () => {
   return (
@@ -55,8 +56,8 @@ const NeedHelp = () => {
           </div>
         </Header>
         <ChatContent>
-          <div style={{background:'red', gridColumn:'1/7', gridRow:'1/6'}}>
-
+          <div style={{ background: "red", gridColumn: "1/7", gridRow: "1/6" }}>
+            <ChatMessages></ChatMessages>
           </div>
           <InputArea>
             <InputChat></InputChat>
