@@ -15,7 +15,11 @@ const InputChat = () => {
       setTask("");
     }
   };
-
+  const handleKeyEnter = (event) => {
+    if (event.key === "Enter") {
+      handleSubmit();
+    }
+  };
   return (
     <>
       <button
@@ -36,7 +40,8 @@ const InputChat = () => {
       <input
         type="text"
         id="task"
-        placeholder="Digite sua Task"
+        onKeyPress={(e) => handleKeyEnter(e)}
+        placeholder="Digite sua mensagem"
         onChange={(e) => setTask(e.target.value)}
         value={task}
         style={{

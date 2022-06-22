@@ -8,6 +8,7 @@ export const Container = styled.div`
 `;
 
 export const UserBallon = styled.div`
+  color: white;
   background: green;
   padding: 10px;
   min-width: 20%;
@@ -21,6 +22,7 @@ export const UserBallon = styled.div`
 export const ProfissinalBallon = styled.div`
   background: blue;
   padding: 10px;
+  color: white;
   min-width: 20%;
   max-width: 45%;
   align-self: flex-start;
