@@ -5,6 +5,7 @@ import { Container } from "./styles";
 import { Link } from "react-router-dom";
 
 import TypewriterComponent from "typewriter-effect";
+import Sidebar from "../../components/Sidebar";
 
 const Home = () => {
   return (
@@ -27,17 +28,7 @@ const Home = () => {
 
           <div style={{ gridColumn: "6/7" }}>
             <span style={{ padding: "10px", zIndex: "1000" }}>
-              <Link to="/menu" style={{ color: "#008ef8" }}>
-                <MenuIcon
-                  sx={{
-                    fontSize: "30px",
-                    cursor: "pointer",
-                    background: "white",
-                    borderRadius: "50%",
-                    padding: "4px",
-                  }}
-                />
-              </Link>
+              <Sidebar> </Sidebar>
             </span>
           </div>
         </Header>
@@ -69,36 +60,49 @@ const Home = () => {
           />
         </div>
         <Container>
-          <div
-            style={{
-              height: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              fontSize: "50px",
-            }}
-          >
-            Quero ajudar
-          </div>
           <Link
-              style={{ textDecoration: "none", color: "#008ef8", height:'100%', width:'100%' }}
-              to={"/needhelp"}
-            >
-          <div
             style={{
-              background: "red",
+              textDecoration: "none",
+              color: "#008ef8",
               height: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              fontSize: "50px",
-              cursor: "pointer",
+              width: "100%",
             }}
+            to={"/login"}
           >
-
+            <div
+              style={{
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                fontSize: "50px",
+              }}
+            >
+              Quero ajudar
+            </div>
+          </Link>
+          <Link
+            style={{
+              textDecoration: "none",
+              color: "#008ef8",
+              height: "100%",
+              width: "100%",
+            }}
+            to={"/needhelp"}
+          >
+            <div
+              style={{
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                fontSize: "50px",
+                cursor: "pointer",
+              }}
+            >
               Preciso de ajuda
-           
-          </div> </Link>
+            </div>{" "}
+          </Link>
         </Container>
       </ScreenBack>
     </div>

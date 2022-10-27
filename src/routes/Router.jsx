@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import { MessagesContextProvider } from "../components/Context/MessagesContext";
 
 import Home from "../Pages/Home";
+import Login from "../Pages/Login";
 import NeedHelp from "../Pages/NeedHelp";
 
 const Router = () => {
@@ -13,14 +14,17 @@ const Router = () => {
   return (
     <AnimatePresence exitBeforeEnter>
       <Switch location={Location} key={Location.pathname}>
-      <MessagesContextProvider>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/needhelp">
-          <NeedHelp />
-        </Route>
-      </MessagesContextProvider>
+        <MessagesContextProvider>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/needhelp">
+            <NeedHelp />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+        </MessagesContextProvider>
       </Switch>
     </AnimatePresence>
   );

@@ -22,7 +22,7 @@ const heartBeat = keyframes`
 	}
 `;
 export const AnimatedHeart = styled.span`
-  animation: ${heartBeat} 5s ease infinite;
+  animation: ${heartBeat} 3s infinite;
 `;
 export const Video = styled.div`
   width: 100vw !important;
@@ -30,7 +30,7 @@ export const Video = styled.div`
   height: 100vh;
   background: linear-gradient(-45deg, #1fd5fc, #5a4dff);
   background-size: 400% 400%;
-  animation: ${heartBeat} 7s  infinite;
+  animation: ${heartBeat} 7s infinite;
 
   text-align: center;
 `;
@@ -71,7 +71,7 @@ export const Container = styled.div`
   width: 100%;
   row-gap: 40px;
 
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   &::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 10px;
@@ -98,7 +98,7 @@ export const ScreenBack = styled.div`
   background: #54378f4a;
   position: fixed;
 
-  padding-top: 40px;
+  padding-top: 90px;
   display: grid;
 
   grid-template-columns: repeat(3, 1fr);
