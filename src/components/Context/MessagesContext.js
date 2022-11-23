@@ -9,6 +9,7 @@ export const MessagesContextProvider = (props) => {
   const [Messages, setMessages] = useState([]);
   // // const { User } = useContext(AuthContext)
   const [User, setUser] = useState();
+  const [index, setIndex] = useState();
 
   firebase
     .auth()
@@ -21,6 +22,7 @@ export const MessagesContextProvider = (props) => {
     .catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
+      console.log("error", errorCode, errorMessage);
       // ...
     });
 
@@ -51,12 +53,30 @@ export const MessagesContextProvider = (props) => {
     // eslint-disable-next-line
   }, [User]);
   useEffect(() => {
+    const d = new Date();
+    let date =
+      d.getDate() +
+      "-" +
+      (parseInt(d.getUTCMonth()) + 1).toString() +
+      "-" +
+      d.getFullYear() +
+      "-" +
+      d.getHours() +
+      "-" +
+      d.getMinutes() +
+      "-" +
+      d.getSeconds() +
+      "-" +
+      d.getMilliseconds();
+
     if (User) {
       firebase
         .firestore()
         .collection("Users")
         .doc("Urgente")
+
         .collection(User.uid)
+
         .orderBy("addedon", "asc")
         .onSnapshot((snapshot) => {
           const newtask = snapshot.docs.map((doc) => ({
@@ -66,6 +86,36 @@ export const MessagesContextProvider = (props) => {
 
           setMessages(newtask);
         });
+      let teste = firebase.firestore().collection("Users").doc("Urgente");
+
+      teste.get().then((doc) => {
+        if (doc.exists) {
+          alert(JSON.stringify(doc?.get("teste")));
+          alert(doc.get("teste")?.length);
+          let obj = doc?.get("teste")?.some((o) => o.name === User.uid);
+          alert(obj);
+          if (doc?.get("teste")) {
+            if (obj == false) {
+              alert("entrei");
+              teste.set({
+                teste: [
+                  ...doc.get("teste"),
+                  { name: User.uid, waitingHelp: true, time: date },
+                ],
+              });
+            }
+          } else {
+            teste.set({
+              teste: [{ name: User.uid, waitingHelp: true, time: date }],
+            });
+          }
+        } else {
+          alert(doc);
+          teste.set({
+            teste: [{ name: User.uid, waitingHelp: true, time: date }],
+          });
+        }
+      });
     }
     // eslint-disable-next-line
   }, [User]);
@@ -85,48 +135,23 @@ export const MessagesContextProvider = (props) => {
       d.getMinutes() +
       "-" +
       d.getSeconds() +
-      "-" +
-      d.getMilliseconds();
+
+    firebase
+      .firestore()
+      .collection("Users")
+      .doc("Urgente")
+      .collection(User.uid)
+      .get()
+      .then((doc) => {
+        setIndex(doc.docs.length);
+      });
 
     const obj = {
       task,
       completed: false,
-      addedon: date,
+      addedon: index,
       user: User.uid,
     };
-    const sfRef = firebase.firestore().collection("Users").doc("Urgente");
-    sfRef
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          let Needers = [];
-          let NeederNotification = [];
-          let UserNeeder = { name: User.uid, opened: false };
-          console.log("Document data:", doc.data()?.needers);
-          let tt = doc.data()?.needers;
-          for (let index = 0; index < tt.length; index++) {
-            const element = tt[index];
-            Needers.push(element);
-            NeederNotification.push(element.name.includes(UserNeeder.name));
-          }
-          console.log(NeederNotification);
-          if (NeederNotification.includes(true)) {
-          } else {
-            Needers.push(UserNeeder);
-          }
-
-          console.log(Needers);
-          firebase.firestore().collection("Users").doc("Urgente").set({
-            needers: Needers,
-          });
-        } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-        }
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
 
     firebase
       .firestore()

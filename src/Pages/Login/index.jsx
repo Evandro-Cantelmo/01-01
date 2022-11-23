@@ -4,9 +4,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Container } from "./styles";
 import { Link } from "react-router-dom";
 
-import TypewriterComponent from "typewriter-effect";
-import Sidebar from "../../components/Sidebar";
-
 const Login = () => {
   return (
     <div>

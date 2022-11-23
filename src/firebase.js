@@ -1,14 +1,13 @@
 import firebase from "firebase";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD5gm7MrGFyL3epE0Ls-LPhxboS_KLhbU4",
-  authDomain: "umporum-3ebdd.firebaseapp.com",
-  databaseURL: "https://umporum-3ebdd-default-rtdb.firebaseio.com",
-  projectId: "umporum-3ebdd",
-  storageBucket: "umporum-3ebdd.appspot.com",
-  messagingSenderId: "201917087848",
-  appId: "1:201917087848:web:debd2a8a3cf00ea653fbdd",
-  measurementId: "G-KQKLY3M10D",
+  apiKey: "AIzaSyCpTFMPID6RXaRv1mgTaO3GR1FgFkoTcog",
+  authDomain: "umporum-33410.firebaseapp.com",
+  projectId: "umporum-33410",
+  storageBucket: "umporum-33410.appspot.com",
+  messagingSenderId: "636619766609",
+  appId: "1:636619766609:web:85d7e79ab105d1764ef170",
+  measurementId: "G-Q63629TYWE",
 };
 
 firebase.initializeApp(firebaseConfig);
